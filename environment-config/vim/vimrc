@@ -1,0 +1,143 @@
+set nocompatible
+
+
+"""""" Display Settings
+set showmatch
+set showmode
+
+" Color and highlight properly
+syntax enable
+highlight Normal ctermfg=grey ctermbg=black
+let python_highlight_all=1
+colorscheme wombat256
+
+" Set vertical lines at 80 and 100 characters
+set colorcolumn=80,100
+
+
+"""""" Keybind Changes
+" easier to indent and unindent code blocks
+vnoremap < <gv
+vnoremap > >gv
+
+" Easy window switching
+nmap <C-h> <C-w>h
+let g:C_Ctrl_j = 'off'
+nmap <C-j> <C-w>j
+nmap <C-k> <C-w>k
+nmap <C-l> <C-w>l
+
+" Exit the terminal window more easily
+tmap <C-F> <C-W>N
+tmap <C-G> <C-W>Ngt
+
+" Flip tabs and run pytest in the left most window
+nnoremap <C-p> gt9<C-w>hipytest -v .<CR>
+
+" Mapping to toggle a netrw tree listing
+nnoremap <C-n> :call ToggleNetrw()<CR>
+
+" Notes Related Mappings
+nnoremap <leader>nd :OpenDailyNote<CR>
+nnoremap <leader>nw :OpenWeeklyNote<CR>
+nnoremap <leader>na :edit %%%TOP-NOTES-PATH%%%/activity-planner.md<CR>
+nnoremap <leader>np :edit %%%TOP-NOTES-PATH%%%/Productivity/Projects/_Project_Main.md<CR>
+nnoremap <leader>nh :edit %%%TOP-NOTES-PATH%%%/_Home.md<CR>
+
+
+"""""" General
+" Code Folding
+set foldmethod=indent
+set foldlevel=99
+
+" Make backspace work as expected
+set backspace=indent,eol,start
+
+" Set the tab key to put 4 spaces
+set tabstop=4
+set softtabstop=4
+set shiftwidth=4
+set shiftround
+set expandtab
+
+" Don't auto word wrap
+set textwidth=0
+
+" Show the line numbers in each window
+set nu
+
+" Allow recursive file searching
+set path+=**
+
+" Turn on wild menu
+set wildmenu
+ 
+ 
+"""""" Custom Commands
+command NewDailyNote silent !python "%%%MILAM-NOTES-REPO-PATH%%%/new_daily_note.py" "%%%TOP-NOTES-PATH%%%/Journal/Daily"
+command OpenDailyNote call OpenDailyNoteFunc()
+
+command NewWeeklyNote silent !python "%%%MILAM-NOTES-REPO-PATH%%%/new_weekly_note.py" "%%%TOP-NOTES-PATH%%%/Journal/Weekly"
+command OpenWeeklyNote call OpenWeeklyNoteFunc()
+
+
+"""""" Custom Functions
+function! OpenDailyNoteFunc()
+    let g:DailyNotePath = "%%%TOP-NOTES-PATH%%%/Journal/Daily/" . strftime("%Y-%m-%d") . ".md"
+    if filereadable(g:DailyNotePath)
+        ""
+    else
+        NewDailyNote
+        execute "redraw!"
+    endif
+    execute "edit " . g:DailyNotePath
+endfunction
+
+function! OpenWeeklyNoteFunc()
+    let g:WeeklyNotePath = "%%%TOP-NOTES-PATH%%%/Journal/Weekly/" . strftime("%Y-W%V") . ".md"
+    if filereadable(g:WeeklyNotePath)
+        ""
+    else
+        NewWeeklyNote
+        execute "redraw!"
+    endif
+    execute "edit " . g:WeeklyNotePath
+endfunction
+
+
+""""""" Filetype Specific Settings
+filetype plugin on
+
+""" Associate different extensions for different filetypes
+augroup suffixes
+    autocmd!
+
+    let associations = [
+                \["javascript", ".js,.javascript,.es,.esx,.json"],
+                \["python", ".py,.pyw"],
+                \["markdown", ".md"]
+                \]
+
+    for ft in associations
+        execute "autocmd FileType " . ft[0] . " setlocal suffixesadd=" . ft[1]
+    endfor
+augroup END
+" Flag lines with just whitespace for python files
+highlight BadWhitespace ctermbg=red guibg=darkred
+au BufRead,BufNewFile *.py,*.pyw, match BadWhitespace /\s\+$/
+
+
+""""""" Plugin Specific Settings
+""" netrw
+let g:netrw_banner = 0
+let g:netrw_liststyle = 3
+
+" Function to toggle netrw
+function! ToggleNetrw()
+    if bufwinnr("NetrwTreeListing") < 0
+        let g:PrevBuffer = bufnr("%")
+        silent Explore
+    else
+        execute "buffer" g:PrevBuffer
+    endif
+endfunction
