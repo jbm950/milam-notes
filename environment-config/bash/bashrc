@@ -1,0 +1,11 @@
+# Gets python to work right on bash
+alias python='winpty python.exe'
+
+alias gr='cd %%%GIT-REPOS-PATH%%%'
+
+export PATH='$PATH:%%%CUSTOM-BATCH-SCRIPTS-FOLDER%%%'
+
+vimnotes() {
+    cd %%%TOP-NOTES-PATH%%%
+    vim
+}
