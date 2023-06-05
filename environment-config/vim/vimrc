@@ -40,9 +40,9 @@ nnoremap <C-n> :call ToggleNetrw()<CR>
 " Notes Related Mappings
 nnoremap <leader>nd :OpenDailyNote<CR>
 nnoremap <leader>nw :OpenWeeklyNote<CR>
-nnoremap <leader>na :edit %%%TOP-NOTES-PATH%%%/activity-planner.md<CR>
-nnoremap <leader>np :edit %%%TOP-NOTES-PATH%%%/Productivity/Projects/_Project_Main.md<CR>
-nnoremap <leader>nh :edit %%%TOP-NOTES-PATH%%%/_Home.md<CR>
+nnoremap <leader>na :edit $NOTES_DIR/activity-planner.md<CR>
+nnoremap <leader>np :edit $NOTES_DIR/Productivity/Projects/_Project_Main.md<CR>
+nnoremap <leader>nh :edit $NOTES_DIR/_Home.md<CR>
 
 
 """""" General
@@ -74,16 +74,16 @@ set wildmenu
  
  
 """""" Custom Commands
-command NewDailyNote silent !python "%%%MILAM-NOTES-REPO-PATH%%%/new_daily_note.py" "%%%TOP-NOTES-PATH%%%/Journal/Daily"
+command NewDailyNote silent !python "$MILAM_NOTES_REPO_DIR/new_daily_note.py" "$NOTES_DIR/Journal/Daily"
 command OpenDailyNote call OpenDailyNoteFunc()
 
-command NewWeeklyNote silent !python "%%%MILAM-NOTES-REPO-PATH%%%/new_weekly_note.py" "%%%TOP-NOTES-PATH%%%/Journal/Weekly"
+command NewWeeklyNote silent !python "$MILAM_NOTES_REPO_DIR/new_weekly_note.py" "$NOTES_DIR/Journal/Weekly"
 command OpenWeeklyNote call OpenWeeklyNoteFunc()
 
 
 """""" Custom Functions
 function! OpenDailyNoteFunc()
-    let g:DailyNotePath = "%%%TOP-NOTES-PATH%%%/Journal/Daily/" . strftime("%Y-%m-%d") . ".md"
+    let g:DailyNotePath = "$NOTES_DIR/Journal/Daily/" . strftime("%Y-%m-%d") . ".md"
     if filereadable(g:DailyNotePath)
         ""
     else
@@ -94,7 +94,7 @@ function! OpenDailyNoteFunc()
 endfunction
 
 function! OpenWeeklyNoteFunc()
-    let g:WeeklyNotePath = "%%%TOP-NOTES-PATH%%%/Journal/Weekly/" . strftime("%Y-W%V") . ".md"
+    let g:WeeklyNotePath = "$NOTES_DIR/Journal/Weekly/" . strftime("%Y-W%V") . ".md"
     if filereadable(g:WeeklyNotePath)
         ""
     else
