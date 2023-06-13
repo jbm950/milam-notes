@@ -3,7 +3,7 @@ alias python='winpty python.exe'
 
 alias gr='cd $GIT_REPOS'
 
-export PATH='$PATH:$CUSTOM_BATCH_SCRIPTS_PATH'
+export PATH=$PATH:$CUSTOM_BATCH_SCRIPTS_PATH
 
 vimnotes() {
     cd $NOTES_DIR
