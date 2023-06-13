@@ -31,6 +31,9 @@ nmap <C-l> <C-w>l
 tmap <C-F> <C-W>N
 tmap <C-G> <C-W>Ngt
 
+" Toggle options
+nnoremap coh :set hlsearch! hlsearch?<CR>
+
 " Flip tabs and run pytest in the left most window
 nnoremap <C-p> gt9<C-w>hipytest -v .<CR>
 
