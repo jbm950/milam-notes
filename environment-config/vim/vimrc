@@ -27,6 +27,11 @@ nmap <C-j> <C-w>j
 nmap <C-k> <C-w>k
 nmap <C-l> <C-w>l
 
+" Move through local fix entries easier
+nnoremap ]q :lnext<CR>
+nnoremap [q :lprevious<CR>
+nnoremap <expr> [w empty(filter(getwininfo(), 'v:val.loclist')) ? ':lopen<CR>' : ':lclose<CR>'
+
 " Exit the terminal window more easily
 tmap <C-F> <C-W>N
 tmap <C-G> <C-W>Ngt
