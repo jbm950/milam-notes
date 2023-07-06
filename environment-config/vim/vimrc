@@ -92,6 +92,10 @@ command OpenWeeklyNote call OpenWeeklyNoteFunc()
 command NewMonthlyNote silent !python "$MILAM_NOTES_REPO_DIR/new_monthly_note.py" "$NOTES_DIR/Journal/Monthly"
 command OpenMonthlyNote call OpenMonthlyNoteFunc()
 
+command FourWinTwoTerm call FourWinTwoTermFunc()
+command TwoWinOneTerm call TwoWinOneTermFunc()
+
+
 """""" Custom Functions
 function! OpenDailyNoteFunc()
     let g:DailyNotePath = "$NOTES_DIR/Journal/Daily/" . strftime("%Y-%m-%d") . ".md"
@@ -124,6 +128,29 @@ function! OpenMonthlyNoteFunc()
         execute "redraw!"
     endif
     execute "edit " . g:MonthlyNotePath
+endfunction
+
+function! FourWinTwoTermFunc()
+    for win_num in [1, 2, 3]
+        vsplit
+    endfor
+    execute "normal \<C-W>l2\<C-W>>"
+    tabnew
+    vsplit
+    execute "normal 2\<C-W>>"
+    for term_num in [1, 2]
+        term ++curwin
+        execute "normal \<C-W>l"
+    endfor
+    tabnext
+    execute "normal \<C-W>h"
+endfunction
+
+function! TwoWinOneTermFunc()
+    vsplit
+    tabnew
+    term ++curwin
+    tabnext
 endfunction
 
 
