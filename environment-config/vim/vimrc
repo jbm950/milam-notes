@@ -53,6 +53,9 @@ nnoremap <leader>na :edit $NOTES_DIR/activity-planner.md<CR>
 nnoremap <leader>np :edit $NOTES_DIR/Productivity/Projects/_Project_Main.md<CR>
 nnoremap <leader>nh :edit $NOTES_DIR/_Home.md<CR>
 
+" Python Related Mappings
+nnoremap <leader>pl :PylintLopen<CR>
+
 
 """""" General
 " Code Folding
@@ -94,6 +97,8 @@ command OpenMonthlyNote call OpenMonthlyNoteFunc()
 
 command FourWinTwoTerm call FourWinTwoTermFunc()
 command TwoWinOneTerm call TwoWinOneTermFunc()
+
+command PylintLopen lex system('pylint "'..expand('%:p')..'" | tail -n +2 | head -n -4') | lopen
 
 
 """""" Custom Functions
