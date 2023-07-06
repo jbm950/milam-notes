@@ -40,7 +40,7 @@ tmap <C-G> <C-W>Ngt
 nnoremap coh :set hlsearch! hlsearch?<CR>
 
 " Flip tabs and run pytest in the left most window
-nnoremap <C-p> gt9<C-w>hipytest -v .<CR>
+nnoremap <C-p> 2gt9<C-w>hipytest -v .<CR>
 
 " Mapping to toggle a netrw tree listing
 nnoremap <C-n> :call ToggleNetrw()<CR>
