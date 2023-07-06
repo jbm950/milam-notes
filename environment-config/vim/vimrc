@@ -1,9 +1,9 @@
-set nocompatible
+set nocompatible " Don't try to be backwards compatible with vi
 
 
 """""" Display Settings
-set showmatch
-set showmode
+set showmatch " set to show matching parenthesis
+set showmode " always show what mode we're currently editing in
 
 " Color and highlight properly
 syntax enable
@@ -78,7 +78,7 @@ set nu
 " Allow recursive file searching
 set path+=**
 
-" Turn on wild menu
+" Display all matching files when we tab complete
 set wildmenu
  
  
@@ -144,6 +144,8 @@ augroup suffixes
         execute "autocmd FileType " . ft[0] . " setlocal suffixesadd=" . ft[1]
     endfor
 augroup END
+
+""" Python
 " Flag lines with just whitespace for python files
 highlight BadWhitespace ctermbg=red guibg=darkred
 au BufRead,BufNewFile *.py,*.pyw, match BadWhitespace /\s\+$/
@@ -151,8 +153,8 @@ au BufRead,BufNewFile *.py,*.pyw, match BadWhitespace /\s\+$/
 
 """"""" Plugin Specific Settings
 """ netrw
-let g:netrw_banner = 0
-let g:netrw_liststyle = 3
+let g:netrw_banner = 0 " get rid of giant banner
+let g:netrw_liststyle = 3 " folder tree view
 
 " Function to toggle netrw
 function! ToggleNetrw()
