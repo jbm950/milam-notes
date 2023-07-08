@@ -52,6 +52,10 @@ nnoremap <leader>nm :OpenMonthlyNote<CR>
 nnoremap <leader>na :edit $NOTES_DIR/activity-planner.md<CR>
 nnoremap <leader>np :edit $NOTES_DIR/Productivity/Projects/_Project_Main.md<CR>
 nnoremap <leader>nh :edit $NOTES_DIR/_Home.md<CR>
+nnoremap <leader>nt :!grep -rPoh --include=*.md
+    \ --exclude-dir=Journal --exclude-dir=Productivity --exclude-dir=Templates
+    \ "\s(\#[^\s\#]*)" .
+    \ <bar> sort -u<CR>
 
 " Python Related Mappings
 nnoremap <leader>pl :PylintLopen<CR>
