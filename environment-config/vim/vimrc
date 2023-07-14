@@ -46,13 +46,13 @@ nnoremap <C-p> 2gt9<C-w>hipytest -v .<CR>
 nnoremap <C-n> :call ToggleNetrw()<CR>
 
 " Notes Related Mappings
-nnoremap <leader>nd :OpenDailyNote<CR>
-nnoremap <leader>nw :OpenWeeklyNote<CR>
-nnoremap <leader>nm :OpenMonthlyNote<CR>
-nnoremap <leader>na :edit $NOTES_DIR/activity-planner.md<CR>
-nnoremap <leader>np :edit $NOTES_DIR/Productivity/Projects/_Project_Main.md<CR>
-nnoremap <leader>nh :edit $NOTES_DIR/_Home.md<CR>
-nnoremap <leader>nt :!grep -rPoh --include=*.md
+nnoremap <leader>nd :OpenDailyNote<CR>|  " Note Daily
+nnoremap <leader>nw :OpenWeeklyNote<CR>|  " Note Weekly
+nnoremap <leader>nm :OpenMonthlyNote<CR>|  " Note Monthly
+nnoremap <leader>na :edit $NOTES_DIR/activity-planner.md<CR>|  " Note Activity planner
+nnoremap <leader>np :edit $NOTES_DIR/Productivity/Projects/_Project_Main.md<CR>|  " Note Productivity
+nnoremap <leader>nh :edit $NOTES_DIR/_Home.md<CR>|  " Note Home
+nnoremap <leader>nt :!grep -rPoh --include=*.md|  " Note Tags
     \ --exclude-dir=Journal --exclude-dir=Productivity --exclude-dir=Templates
     \ "\s(\#[^\s\#]*)" .
     \ <bar> sort -u<CR>
