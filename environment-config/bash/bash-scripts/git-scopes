@@ -1,0 +1,18 @@
+#!/bin/sh
+
+if [[ $1 ]]; then
+    scope=$1;
+    shift 1;
+
+    if [[ `git tag -l "cc"` == "cc" ]]; then
+        git log cc..HEAD -P --grep="(?<=\()$scope(?=\))" $@
+    else
+        git log -P --grep="(?<=\()$scope(?=\))" $@
+    fi
+else
+    if [[ `git tag -l "cc"` == "cc" ]]; then
+        git log --oneline cc..HEAD | grep -Po '(?<=\().*?(?=\))' | sort -u
+    else
+        git log --oneline | grep -Po '(?<=\().*?(?=\))' | sort -u
+    fi
+fi
