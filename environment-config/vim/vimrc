@@ -16,7 +16,7 @@ set colorcolumn=80,100
 
 
 """""" Keybind Changes
-" easier to indent and unindent code blocks
+" Easier to indent and unindent code blocks
 vnoremap < <gv
 vnoremap > >gv
 
@@ -31,6 +31,9 @@ nmap <C-l> <C-w>l
 nnoremap ]q :lnext<CR>
 nnoremap [q :lprevious<CR>
 nnoremap <expr> [w empty(filter(getwininfo(), 'v:val.loclist')) ? ':lopen<CR>' : ':lclose<CR>'
+
+" Exit insert mode more easily
+inoremap jk <esc>
 
 " Exit the terminal window more easily
 tmap <C-F> <C-W>N
