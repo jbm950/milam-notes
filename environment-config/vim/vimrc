@@ -48,8 +48,9 @@ nnoremap <C-p> 2gt9<C-w>hipytest -v .<CR>
 " Mapping to toggle a netrw tree listing
 nnoremap <C-n> :call ToggleNetrw()<CR>
 
-" Quickly edit vimrc
+" Quickly edit and reload vimrc
 nnoremap <leader>ev :split $MYVIMRC<cr>
+nnoremap <leader>sv :source $MYVIMRC<cr>
 
 " Notes Related Mappings
 nnoremap <leader>nd :OpenDailyNote<CR>|  " Note Daily
