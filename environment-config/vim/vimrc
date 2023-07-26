@@ -89,7 +89,7 @@ set expandtab
 set textwidth=0
 
 " Show the line numbers in each window
-set nu
+set number
 
 " Allow recursive file searching
 set path+=**
@@ -208,7 +208,7 @@ augroup END
 """ Python file settings ---------------------- {{{
 " Flag lines with just whitespace for python files
 highlight BadWhitespace ctermbg=red guibg=darkred
-au BufRead,BufNewFile *.py,*.pyw, match BadWhitespace /\s\+$/
+autocmd BufRead,BufNewFile *.py,*.pyw, match BadWhitespace /\s\+$/
 " }}}
 
 """ Vimscript file settings ---------------------- {{{
