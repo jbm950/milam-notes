@@ -21,11 +21,11 @@ vnoremap < <gv
 vnoremap > >gv
 
 " Easy window switching
-nmap <C-h> <C-w>h
+nnoremap <C-h> <C-w>h
 let g:C_Ctrl_j = 'off'
-nmap <C-j> <C-w>j
-nmap <C-k> <C-w>k
-nmap <C-l> <C-w>l
+nnoremap <C-j> <C-w>j
+nnoremap <C-k> <C-w>k
+nnoremap <C-l> <C-w>l
 
 " Move through local fix entries easier
 nnoremap ]q :lnext<CR>
@@ -36,8 +36,8 @@ nnoremap <expr> [w empty(filter(getwininfo(), 'v:val.loclist')) ? ':lopen<CR>' :
 inoremap jk <esc>
 
 " Exit the terminal window more easily
-tmap <C-F> <C-W>N
-tmap <C-G> <C-W>Ngt
+tnoremap <C-F> <C-W>N
+tnoremap <C-G> <C-W>Ngt
 
 " Toggle options
 nnoremap coh :set hlsearch! hlsearch?<CR>
