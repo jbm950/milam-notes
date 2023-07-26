@@ -1,7 +1,7 @@
 set nocompatible " Don't try to be backwards compatible with vi
 
 
-"""""" Display Settings
+"""""" Display Settings ---------------------- {{{
 set showmatch " set to show matching parenthesis
 set showmode " always show what mode we're currently editing in
 
@@ -13,9 +13,10 @@ colorscheme wombat256
 
 " Set vertical lines at 80 and 100 characters
 set colorcolumn=80,100
+" }}}
 
 
-"""""" Keybind Changes
+"""""" Keybind Changes ---------------------- {{{
 " Easier to indent and unindent code blocks
 vnoremap < <gv
 vnoremap > >gv
@@ -66,9 +67,10 @@ nnoremap <leader>nt :!grep -rPoh --include=*.md|  " Note Tags
 
 " Python Related Mappings
 nnoremap <leader>pl :PylintLopen<CR>
+" }}}
 
 
-"""""" General
+"""""" General ---------------------- {{{
 " Code Folding
 set foldmethod=indent
 set foldlevel=99
@@ -94,9 +96,10 @@ set path+=**
 
 " Display all matching files when we tab complete
 set wildmenu
+" }}}
  
  
-"""""" Custom Commands
+"""""" Custom Commands ---------------------- {{{
 command NewDailyNote silent !python "$MILAM_NOTES_REPO_DIR/new_daily_note.py" "$NOTES_DIR/Journal/Daily"
 command OpenDailyNote call OpenDailyNoteFunc()
 
@@ -110,9 +113,11 @@ command FourWinTwoTerm call FourWinTwoTermFunc()
 command TwoWinOneTerm call TwoWinOneTermFunc()
 
 command PylintLopen lex system('pylint "'..expand('%:p')..'" | tail -n +2 | head -n -4') | lopen
+" }}}
 
 
-"""""" Custom Functions
+"""""" Custom Functions ---------------------- {{{
+""" OpenDailyNoteFunc() {{{
 function! OpenDailyNoteFunc()
     let g:DailyNotePath = "$NOTES_DIR/Journal/Daily/" . strftime("%Y-%m-%d") . ".md"
     if filereadable(g:DailyNotePath)
@@ -123,7 +128,9 @@ function! OpenDailyNoteFunc()
     endif
     execute "edit " . g:DailyNotePath
 endfunction
+" }}}
 
+""" OpenWeeklyNoteFunc() {{{
 function! OpenWeeklyNoteFunc()
     let g:WeeklyNotePath = "$NOTES_DIR/Journal/Weekly/" . strftime("%Y-W%V") . ".md"
     if filereadable(g:WeeklyNotePath)
@@ -134,7 +141,9 @@ function! OpenWeeklyNoteFunc()
     endif
     execute "edit " . g:WeeklyNotePath
 endfunction
+" }}}
 
+""" OpenMonthlyNoteFunc() {{{
 function! OpenMonthlyNoteFunc()
     let g:MonthlyNotePath = "$NOTES_DIR/Journal/Monthly/" . strftime("%Y-%m") . ".md"
     if filereadable(g:MonthlyNotePath)
@@ -145,7 +154,9 @@ function! OpenMonthlyNoteFunc()
     endif
     execute "edit " . g:MonthlyNotePath
 endfunction
+" }}}
 
+""" FourWinTwoTermFunc() {{{
 function! FourWinTwoTermFunc()
     for win_num in [1, 2, 3]
         vsplit
@@ -161,19 +172,24 @@ function! FourWinTwoTermFunc()
     tabnext
     execute "normal \<C-W>h"
 endfunction
+" }}}
 
+""" TwoWinOneTermFunc() {{{
 function! TwoWinOneTermFunc()
     vsplit
     tabnew
     term ++curwin
     tabnext
 endfunction
+" }}}
+" }}}
 
 
-""""""" Filetype Specific Settings
+""""""" Filetype Specific Settings ---------------------- {{{
 filetype plugin on
 
-""" Associate different extensions for different filetypes
+""" Multiple file type settings ---------------------- {{{
+" Associate different extensions for different filetypes
 augroup suffixes
     autocmd!
 
@@ -187,15 +203,25 @@ augroup suffixes
         execute "autocmd FileType " . ft[0] . " setlocal suffixesadd=" . ft[1]
     endfor
 augroup END
+"}}}
 
-""" Python
+""" Python file settings ---------------------- {{{
 " Flag lines with just whitespace for python files
 highlight BadWhitespace ctermbg=red guibg=darkred
 au BufRead,BufNewFile *.py,*.pyw, match BadWhitespace /\s\+$/
+" }}}
+
+""" Vimscript file settings ---------------------- {{{
+augroup filetype_vim
+    autocmd!
+    autocmd FileType vim setlocal foldmethod=marker
+augroup END
+" }}}
+" }}}
 
 
-""""""" Plugin Specific Settings
-""" netrw
+""""""" Plugin Specific Settings ---------------------- {{{
+""" netrw ---------------------- {{{
 let g:netrw_banner = 0 " get rid of giant banner
 let g:netrw_liststyle = 3 " folder tree view
 
@@ -208,3 +234,5 @@ function! ToggleNetrw()
         execute "buffer" g:PrevBuffer
     endif
 endfunction
+" }}}
+" }}}
