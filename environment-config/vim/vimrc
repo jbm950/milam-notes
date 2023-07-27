@@ -58,7 +58,8 @@ nnoremap <leader>nd :OpenDailyNote<CR>|  " Note Daily
 nnoremap <leader>nw :OpenWeeklyNote<CR>|  " Note Weekly
 nnoremap <leader>nm :OpenMonthlyNote<CR>|  " Note Monthly
 nnoremap <leader>na :edit $NOTES_DIR/activity-planner.md<CR>|  " Note Activity planner
-nnoremap <leader>np :edit $NOTES_DIR/Productivity/Projects/_Project_Main.md<CR>|  " Note Productivity
+nnoremap <leader>np :OpenProjectMainNote<CR>|  " Note Projects
+nnoremap <leader>nb :OpenBacklogMainNote<CR>|  " Note Backlog
 nnoremap <leader>nh :edit $NOTES_DIR/_Home.md<CR>|  " Note Home
 nnoremap <leader>nt :!grep -rPoh --include=*.md|  " Note Tags
     \ --exclude-dir=Journal --exclude-dir=Productivity --exclude-dir=Templates
@@ -109,6 +110,16 @@ command OpenWeeklyNote call OpenWeeklyNoteFunc()
 command NewMonthlyNote silent !python "$MILAM_NOTES_REPO_DIR/new_monthly_note.py" "$NOTES_DIR/Journal/Monthly"
 command OpenMonthlyNote call OpenMonthlyNoteFunc()
 
+command NewProjectMainNote silent !python "$MILAM_NOTES_REPO_DIR/create_productivity_overview_note.py"
+    \ "$NOTES_DIR/Productivity/Projects/_Project_Main.md"
+    \ "$NOTES_DIR/Productivity/Projects"
+command OpenProjectMainNote call OpenProjectMainFunc()
+
+command NewBacklogMainNote silent !python "$MILAM_NOTES_REPO_DIR/create_productivity_overview_note.py"
+    \ "$NOTES_DIR/Productivity/Backlog/_Backlog_Main.md"
+    \ "$NOTES_DIR/Productivity/Backlog"
+command OpenBacklogMainNote call OpenBacklogMainFunc()
+
 command FourWinTwoTerm call FourWinTwoTermFunc()
 command TwoWinOneTerm call TwoWinOneTermFunc()
 
@@ -153,6 +164,26 @@ function! OpenMonthlyNoteFunc()
         execute "redraw!"
     endif
     execute "edit " . g:MonthlyNotePath
+endfunction
+" }}}
+
+""" OpenProjectMainFunc() {{{
+function! OpenProjectMainFunc()
+    let g:ProjectMainPath =  "$NOTES_DIR/Productivity/Projects/_Project_Main.md"
+    NewProjectMainNote
+    execute "redraw!"
+    execute "view " . g:ProjectMainPath
+    execute "set nomodifiable"
+endfunction
+" }}}
+
+""" OpenBacklogMainFunc() {{{
+function! OpenBacklogMainFunc()
+    let g:BacklogMainPath =  "$NOTES_DIR/Productivity/Backlog/_Backlog_Main.md"
+    NewBacklogMainNote
+    execute "redraw!"
+    execute "view " . g:BacklogMainPath
+    execute "set nomodifiable"
 endfunction
 " }}}
 
