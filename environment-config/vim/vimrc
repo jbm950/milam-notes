@@ -173,7 +173,7 @@ function! OpenProjectMainFunc()
     NewProjectMainNote
     execute "redraw!"
     execute "view " . g:ProjectMainPath
-    execute "set nomodifiable"
+    execute "setlocal nomodifiable"
 endfunction
 " }}}
 
@@ -183,7 +183,7 @@ function! OpenBacklogMainFunc()
     NewBacklogMainNote
     execute "redraw!"
     execute "view " . g:BacklogMainPath
-    execute "set nomodifiable"
+    execute "setlocal nomodifiable"
 endfunction
 " }}}
 
