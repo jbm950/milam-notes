@@ -61,10 +61,10 @@ nnoremap <leader>na :edit $NOTES_DIR/activity-planner.md<CR>|  " Note Activity p
 nnoremap <leader>np :OpenProjectMainNote<CR>|  " Note Projects
 nnoremap <leader>nb :OpenBacklogMainNote<CR>|  " Note Backlog
 nnoremap <leader>nh :edit $NOTES_DIR/_Home.md<CR>|  " Note Home
-nnoremap <leader>nt :!grep -rPoh --include=*.md|  " Note Tags
+nnoremap <leader>nt :!grep -rPoh --include=*.md
     \ --exclude-dir=Journal --exclude-dir=Productivity --exclude-dir=Templates
     \ "\s(\#[^\s\#]*)" .
-    \ <bar> sort -u<CR>
+    \ <bar> sort -u<CR>|  " Note Tags
 
 " Python Related Mappings
 nnoremap <leader>pl :PylintLopen<CR>
