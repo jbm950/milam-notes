@@ -236,6 +236,15 @@ augroup suffixes
 augroup END
 "}}}
 
+""" Markdown file settings---------------------- {{{
+augroup filetype_markdown
+    autocmd!
+    autocmd Filetype markdown setlocal foldmethod=expr
+    autocmd Filetype markdown setlocal foldexpr=MarkdownFold()
+    autocmd Filetype markdown setlocal foldlevelstart=99
+augroup END
+" }}}
+
 """ Python file settings ---------------------- {{{
 " Flag lines with just whitespace for python files
 highlight BadWhitespace ctermbg=red guibg=darkred
