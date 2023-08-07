@@ -36,19 +36,25 @@ function! noteplug#OpenMonthlyNoteFunc()
 endfunction
 
 """ OpenProjectMainFunc() {{{2
+command NewProjectMainNote silent !python "$MILAM_NOTES_REPO_DIR/create_productivity_overview_note.py"
+    \ "$NOTES_DIR/Productivity/Projects/_Project_Main.md"
+    \ "$NOTES_DIR/Productivity/Projects"
+
 function! noteplug#OpenProjectMainFunc()
     let g:ProjectMainPath =  "$NOTES_DIR/Productivity/Projects/_Project_Main.md"
     NewProjectMainNote
     execute "redraw!"
     execute "view " . g:ProjectMainPath
-    execute "setlocal nomodifiable"
 endfunction
 
 """ OpenBacklogMainFunc() {{{2
+command NewBacklogMainNote silent !python "$MILAM_NOTES_REPO_DIR/create_productivity_overview_note.py"
+    \ "$NOTES_DIR/Productivity/Backlog/_Backlog_Main.md"
+    \ "$NOTES_DIR/Productivity/Backlog"
+
 function! noteplug#OpenBacklogMainFunc()
     let g:BacklogMainPath =  "$NOTES_DIR/Productivity/Backlog/_Backlog_Main.md"
     NewBacklogMainNote
     execute "redraw!"
     execute "view " . g:BacklogMainPath
-    execute "setlocal nomodifiable"
 endfunction

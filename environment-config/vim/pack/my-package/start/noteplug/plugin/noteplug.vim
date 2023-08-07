@@ -21,13 +21,7 @@ command OpenWeeklyNote call noteplug#OpenWeeklyNoteFunc()
 command NewMonthlyNote silent !python "$MILAM_NOTES_REPO_DIR/new_monthly_note.py" "$NOTES_DIR/Journal/Monthly"
 command OpenMonthlyNote call noteplug#OpenMonthlyNoteFunc()
 
-command NewProjectMainNote silent !python "$MILAM_NOTES_REPO_DIR/create_productivity_overview_note.py"
-    \ "$NOTES_DIR/Productivity/Projects/_Project_Main.md"
-    \ "$NOTES_DIR/Productivity/Projects"
 command OpenProjectMainNote call noteplug#OpenProjectMainFunc()
 
-command NewBacklogMainNote silent !python "$MILAM_NOTES_REPO_DIR/create_productivity_overview_note.py"
-    \ "$NOTES_DIR/Productivity/Backlog/_Backlog_Main.md"
-    \ "$NOTES_DIR/Productivity/Backlog"
 command OpenBacklogMainNote call noteplug#OpenBacklogMainFunc()
 
