@@ -54,19 +54,6 @@ nnoremap <C-n> :call ToggleNetrw()<CR>
 nnoremap <leader>ev :split $MYVIMRC<cr>
 nnoremap <leader>sv :source $MYVIMRC<cr>
 
-" Notes Related Mappings
-nnoremap <leader>nd :OpenDailyNote<CR>|  " Note Daily
-nnoremap <leader>nw :OpenWeeklyNote<CR>|  " Note Weekly
-nnoremap <leader>nm :OpenMonthlyNote<CR>|  " Note Monthly
-nnoremap <leader>na :edit $NOTES_DIR/activity-planner.md<CR>|  " Note Activity planner
-nnoremap <leader>np :OpenProjectMainNote<CR>|  " Note Projects
-nnoremap <leader>nb :OpenBacklogMainNote<CR>|  " Note Backlog
-nnoremap <leader>nh :edit $NOTES_DIR/_Home.md<CR>|  " Note Home
-nnoremap <leader>nt :!grep -rPoh --include=*.md
-    \ --exclude-dir=Journal --exclude-dir=Productivity --exclude-dir=Templates
-    \ "\s(\#[^\s\#]*)" .
-    \ <bar> sort -u<CR>|  " Note Tags
-
 " Python Related Mappings
 nnoremap <leader>pl :PylintLopen<CR>
 " }}}
@@ -102,25 +89,6 @@ set wildmenu
  
  
 """""" Custom Commands ---------------------- {{{
-command NewDailyNote silent !python "$MILAM_NOTES_REPO_DIR/new_daily_note.py" "$NOTES_DIR/Journal/Daily"
-command OpenDailyNote call OpenDailyNoteFunc()
-
-command NewWeeklyNote silent !python "$MILAM_NOTES_REPO_DIR/new_weekly_note.py" "$NOTES_DIR/Journal/Weekly"
-command OpenWeeklyNote call OpenWeeklyNoteFunc()
-
-command NewMonthlyNote silent !python "$MILAM_NOTES_REPO_DIR/new_monthly_note.py" "$NOTES_DIR/Journal/Monthly"
-command OpenMonthlyNote call OpenMonthlyNoteFunc()
-
-command NewProjectMainNote silent !python "$MILAM_NOTES_REPO_DIR/create_productivity_overview_note.py"
-    \ "$NOTES_DIR/Productivity/Projects/_Project_Main.md"
-    \ "$NOTES_DIR/Productivity/Projects"
-command OpenProjectMainNote call OpenProjectMainFunc()
-
-command NewBacklogMainNote silent !python "$MILAM_NOTES_REPO_DIR/create_productivity_overview_note.py"
-    \ "$NOTES_DIR/Productivity/Backlog/_Backlog_Main.md"
-    \ "$NOTES_DIR/Productivity/Backlog"
-command OpenBacklogMainNote call OpenBacklogMainFunc()
-
 command FourWinTwoTerm call FourWinTwoTermFunc()
 command TwoWinOneTerm call TwoWinOneTermFunc()
 
@@ -129,65 +97,6 @@ command PylintLopen lex system('pylint "'..expand('%:p')..'" | tail -n +2 | head
 
 
 """""" Custom Functions ---------------------- {{{
-""" OpenDailyNoteFunc() {{{
-function! OpenDailyNoteFunc()
-    let g:DailyNotePath = "$NOTES_DIR/Journal/Daily/" . strftime("%Y-%m-%d") . ".md"
-    if filereadable(g:DailyNotePath)
-        ""
-    else
-        NewDailyNote
-        execute "redraw!"
-    endif
-    execute "edit " . g:DailyNotePath
-endfunction
-" }}}
-
-""" OpenWeeklyNoteFunc() {{{
-function! OpenWeeklyNoteFunc()
-    let g:WeeklyNotePath = "$NOTES_DIR/Journal/Weekly/" . strftime("%Y-W%V") . ".md"
-    if filereadable(g:WeeklyNotePath)
-        ""
-    else
-        NewWeeklyNote
-        execute "redraw!"
-    endif
-    execute "edit " . g:WeeklyNotePath
-endfunction
-" }}}
-
-""" OpenMonthlyNoteFunc() {{{
-function! OpenMonthlyNoteFunc()
-    let g:MonthlyNotePath = "$NOTES_DIR/Journal/Monthly/" . strftime("%Y-%m") . ".md"
-    if filereadable(g:MonthlyNotePath)
-        ""
-    else
-        NewMonthlyNote
-        execute "redraw!"
-    endif
-    execute "edit " . g:MonthlyNotePath
-endfunction
-" }}}
-
-""" OpenProjectMainFunc() {{{
-function! OpenProjectMainFunc()
-    let g:ProjectMainPath =  "$NOTES_DIR/Productivity/Projects/_Project_Main.md"
-    NewProjectMainNote
-    execute "redraw!"
-    execute "view " . g:ProjectMainPath
-    execute "setlocal nomodifiable"
-endfunction
-" }}}
-
-""" OpenBacklogMainFunc() {{{
-function! OpenBacklogMainFunc()
-    let g:BacklogMainPath =  "$NOTES_DIR/Productivity/Backlog/_Backlog_Main.md"
-    NewBacklogMainNote
-    execute "redraw!"
-    execute "view " . g:BacklogMainPath
-    execute "setlocal nomodifiable"
-endfunction
-" }}}
-
 """ FourWinTwoTermFunc() {{{
 function! FourWinTwoTermFunc()
     for win_num in [1, 2, 3]
