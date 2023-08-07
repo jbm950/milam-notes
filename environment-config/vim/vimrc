@@ -42,6 +42,7 @@ tnoremap <C-G> <C-W>Ngt
 
 " Toggle options
 nnoremap coh :set hlsearch! hlsearch?<CR>
+nnoremap cov :call ToggleVirtualEdit()<CR>
 
 " Flip tabs and run pytest in the left most window
 nnoremap <C-p> 2gt9<C-w>hipytest -v .<CR>
@@ -211,6 +212,18 @@ function! TwoWinOneTermFunc()
     tabnew
     term ++curwin
     tabnext
+endfunction
+" }}}
+
+""" ToggleVirtualEdit() {{{
+function! ToggleVirtualEdit()
+    if &virtualedit ==# "all"
+        set virtualedit=
+        echo "virtualedit="
+    else
+        set virtualedit=all
+        echo "virtualedit=all"
+    endif
 endfunction
 " }}}
 " }}}
