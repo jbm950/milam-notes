@@ -54,10 +54,6 @@ nnoremap <C-n> :call ToggleNetrw()<CR>
 nnoremap <leader>ev :split $MYVIMRC<cr>
 nnoremap <leader>sv :source $MYVIMRC<cr>
 
-" Python Related Mappings
-nnoremap <leader>pl :PylintLopen<CR>
-" }}}
-
 
 """""" General ---------------------- {{{
 " Code Folding
@@ -164,15 +160,6 @@ augroup filetype_markdown
     autocmd Filetype markdown setlocal foldmethod=expr
     autocmd Filetype markdown setlocal foldexpr=MarkdownFold()
     autocmd Filetype markdown setlocal foldlevelstart=99
-augroup END
-" }}}
-
-""" Python file settings ---------------------- {{{
-" Flag lines with just whitespace for python files
-highlight BadWhitespace ctermbg=red guibg=darkred
-augroup python_syntax_highlighting
-    autocmd!
-    autocmd BufRead,BufNewFile *.py,*.pyw, match BadWhitespace /\s\+$/
 augroup END
 " }}}
 
