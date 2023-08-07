@@ -3,9 +3,18 @@ alias python='winpty python.exe'
 
 alias gr='cd $GIT_REPOS'
 
-export PATH=$PATH:$CUSTOM_BATCH_SCRIPTS_PATH
+# cmake using g++
+alias gcmake="cmake -S . -B build -G 'MinGW Makefiles'"
+
+# Custom Git Configs
+git config --global pretty.date-oneline 'format:%C(auto)%h | %as | %s'
 
 vimnotes() {
     cd $NOTES_DIR
     vim
+}
+
+vimsandbox() {
+    cd ~/.vim/pack/sandbox/start/sandbox/plugin
+    vim sandbox.vim
 }
