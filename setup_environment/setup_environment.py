@@ -28,7 +28,6 @@ def set_env_variable(env_variable, env_variable_name):
 if __name__ == "__main__":
     env_variables = [("NOTES_DIR", "notes directory"),
                      ("MILAM_NOTES_REPO_DIR", "milam notes repository"),
-                     ("GIT_REPOS", "git repositories"),
-                     ("CUSTOM_BATCH_SCRIPTS_PATH", "custom batch scripts")]
+                     ("GIT_REPOS", "git repositories")]
     for env_variable in env_variables:
         set_env_variable(*env_variable)
