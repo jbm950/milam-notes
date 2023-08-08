@@ -20,6 +20,14 @@ set colorcolumn=80,100
 vnoremap < <gv
 vnoremap > >gv
 
+" Easy wrapping visual selections
+vnoremap <space>w" <esc>`<i"<esc>`>la"<esc>
+vnoremap <space>w' <esc>`<i'<esc>`>la'<esc>
+vnoremap <space>w` <esc>`<i`<esc>`>la`<esc>
+vnoremap <space>w{ <esc>`<i{<esc>`>la}<esc>
+vnoremap <space>w[ <esc>`<i[<esc>`>la]<esc>
+vnoremap <space>w( <esc>`<i(<esc>`>la)<esc>
+
 " Easy window switching
 nnoremap <C-h> <C-w>h
 let g:C_Ctrl_j = 'off'
