@@ -13,3 +13,4 @@ augroup END
 
 " Commands {{{1
 command PyToggleComment call toggle_comment#ToggleCommentFunc("#")
+command PylintLopen lex system('pylint "'..expand('%:p')..'" | tail -n +2 | head -n -4') | lopen

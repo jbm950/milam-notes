@@ -94,8 +94,6 @@ set wildmenu
 command FourWinTwoTerm call FourWinTwoTermFunc()
 command TwoWinOneTerm call TwoWinOneTermFunc()
 
-command PylintLopen lex system('pylint "'..expand('%:p')..'" | tail -n +2 | head -n -4') | lopen
-
 
 """""" Custom Functions ---------------------- {{{1
 """ FourWinTwoTermFunc() {{{2
