@@ -58,3 +58,12 @@ function! noteplug#OpenBacklogMainFunc()
     execute "redraw!"
     execute "view " . g:BacklogMainPath
 endfunction
+
+""" NewNote(root, template) {{{2
+function! noteplug#NoteNew(root, template)
+    let file_name = input("Provide a name for the new file: ")
+
+    execute "edit " . a:root . file_name
+    execute "read " . a:template
+    normal ggdd
+endfunction
