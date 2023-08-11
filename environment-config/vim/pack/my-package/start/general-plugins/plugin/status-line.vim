@@ -1,3 +1,4 @@
+" ModeText() {{{1
 function! ModeText()
     let current_mode = mode()
     if current_mode =~# "n"
@@ -18,9 +19,28 @@ function! ModeText()
     return current_mode
 endfunction
 
+" GetGitBranch() {{{1
+function! GetGitBranch()
+    let git_branch = system("git -C " . expand("%:p:h") . " rev-parse --abbrev-ref HEAD")
+    if git_branch =~# "fatal"
+        return ""
+    else
+        " Slicing cuts off trailing "^@" character
+        return git_branch[:-2] . " "
+    endif
+endfunction
+
+" Triggers to update statusline variables {{{1
+augroup StatusLineVariables
+    autocmd!
+    autocmd BufEnter,BufRead * let b:git_branch = GetGitBranch()
+augroup END
+
+" Set statusline {{{1
 set statusline=
-set statusline+=%{ModeText()}  " Name of current vim editing mode
-set statusline+=\ %t  " Name of file in the buffer
+set statusline+=%{ModeText()}\   " Name of current vim editing mode
+set statusline+=%{b:git_branch}  " Name of current git branch if inside a repository
+set statusline+=%t  " Name of file in the buffer
 set statusline+=%h%m%r  " Flags (help, modified, read only
 
 set statusline+=%=  " Break to Right Justified Items
