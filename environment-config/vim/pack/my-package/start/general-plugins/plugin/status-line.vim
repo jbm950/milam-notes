@@ -5,6 +5,7 @@ highlight StatusLineReplace ctermfg=16 ctermbg=13
 highlight StatusLineVisual ctermfg=16 ctermbg=166
 highlight StatusLineCommand ctermfg=16 ctermbg=39
 highlight StatusLineGitBranch ctermfg=15 ctermbg=8
+highlight StatusLineModified ctermfg=15 ctermbg=53
 highlight StatusLineInactive ctermfg=16 ctermbg=8
 
 " Mode Settings {{{1
@@ -79,7 +80,7 @@ function! StatuslineActive()
     let statusline.='%{ModeText()}'
     let statusline.=' '
     let statusline.='%#StatuslineGitBranch#%{b:git_branch}'
-    let statusline.='%#StatusLine#'
+    let statusline.='%{%&mod?"%#StatusLineModified#":"%#StatusLine#"%}'
     let statusline.=' %t'
     let statusline.='%h%m%r'
 
@@ -98,7 +99,7 @@ function! StatuslineInactive()
     let statusline=''
     let statusline.='%#StatuslineInactive# '
     let statusline.='%{b:git_branch}'
-    let statusline.='%#StatusLineNC#'
+    let statusline.='%{%&mod?"%#StatusLineModified#":"%#StatusLineNC#"%}'
     let statusline.=' %t'
     let statusline.='%h%m%r'
 
