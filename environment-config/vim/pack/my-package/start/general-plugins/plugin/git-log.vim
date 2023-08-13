@@ -48,11 +48,11 @@ function! GitLog(additional_args)
     highlight link CommitField Type
 
     nnoremap <buffer> <space> :call GitToggleCommitMessage()<CR>
+    nnoremap <buffer> <CR> :call GitOpenFullCommitMessage()<CR>
 
     setlocal nomodifiable
     normal gg
 endfunction
-
 
 " GitScopes() {{{1
 function! GitScopes()
@@ -112,6 +112,59 @@ function! GitToggleCommitMessage()
         call deletebufline(bufname('__Git_Log__'), start_line, end_line)
         normal k
     endif
+
+    setlocal nomodifiable
+endfunction
+
+" GitOpenFullCommitMessage() {{{1
+function! GitOpenFullCommitMessage()
+    let cur_line = getline('.')
+    let commit_hash = split(cur_line)[0]
+    let commit_msg = system('git show ' . commit_hash)
+    let commit_msg_list = split(commit_msg, '\v\n')
+
+    let new_msg_list = []
+    for msg_line in commit_msg_list
+        if msg_line =~# "^diff"
+            call add(new_msg_list, '')
+            call add(new_msg_list, msg_line)
+        elseif msg_line =~# "^index"
+            call add(new_msg_list, msg_line)
+            call add(new_msg_list, '')
+        else
+            call add(new_msg_list, msg_line)
+        endif
+    endfor
+
+    split __Git_Commit__
+    setlocal modifiable
+    normal! ggdG
+    execute "normal! \<C-W>_"
+    setlocal filetype=gitcommit
+    setlocal buftype=nofile
+
+    call append(0, new_msg_list)
+
+    syntax clear
+    syntax region CommitField start=/^commit/ end=/\s/me=s-1 oneline
+    syntax region CommitField start=/^Author/ end=/:/me=s-1 oneline
+    syntax region CommitField start=/^Date/ end=/:/me=s-1 oneline
+    highlight link CommitField Type
+
+    syntax region CommitAddition start=/^+/ end=/$/ oneline
+    highlight link CommitAddition String
+
+    highlight RedText ctermfg=1 ctermbg=black
+    syntax region CommitDeletion start=/^-/ end=/$/ oneline
+    highlight link CommitDeletion RedText
+
+    syntax region CommitChangeSection start=/@@/ end=/$/ oneline
+    highlight link CommitChangeSection Statement
+
+    syntax region CommitChangeFile start=/^diff\s/ end=/$/ oneline
+    syntax region CommitChangeFile start=/^index\s/ end=/$/ oneline
+    syntax region CommitChangeFile start=/^new file mode\s/ end=/$/ oneline
+    highlight link CommitChangeFile Identifier
 
     setlocal nomodifiable
 endfunction
