@@ -1,11 +1,12 @@
 " Statusline Highlight Groups {{{1
-highlight StatusLineNormal ctermfg=16 ctermbg=11
-highlight StatusLineInsert ctermfg=16 ctermbg=40
-highlight StatusLineReplace ctermfg=16 ctermbg=13
-highlight StatusLineVisual ctermfg=16 ctermbg=166
-highlight StatusLineCommand ctermfg=16 ctermbg=39
-highlight StatusLineGitBranch ctermfg=15 ctermbg=8
-highlight StatusLineModified ctermfg=15 ctermbg=53
+highlight StatusLineMiddle ctermfg=248 ctermbg=238
+highlight StatusLineNormal ctermfg=238 ctermbg=117
+highlight StatusLineInsert ctermfg=238 ctermbg=119
+highlight StatusLineReplace ctermfg=236 ctermbg=203
+highlight StatusLineVisual ctermfg=238 ctermbg=216
+highlight StatusLineCommand ctermfg=238 ctermbg=228
+highlight StatusLineGitBranch ctermfg=252 ctermbg=241
+highlight StatusLineModified ctermfg=15 ctermbg=60
 highlight StatusLineInactive ctermfg=16 ctermbg=8
 
 " Mode Settings {{{1
@@ -80,7 +81,7 @@ function! StatuslineActive()
     let statusline.='%{ModeText()}'
     let statusline.=' '
     let statusline.='%#StatuslineGitBranch#%{b:git_branch}'
-    let statusline.='%{%&mod?"%#StatusLineModified#":"%#StatusLine#"%}'
+    let statusline.='%{%&mod?"%#StatusLineModified#":"%#StatusLineMiddle#"%}'
     let statusline.=' %t'
     let statusline.='%h%m%r'
 
