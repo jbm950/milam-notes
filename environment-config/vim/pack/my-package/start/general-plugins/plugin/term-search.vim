@@ -5,11 +5,10 @@
 function OpenFile(...)
     let s:selected_file = getbufline(g:buf, "$")[0]
     call win_gotoid(s:current_win)
+    call delete('.search_strings')
     execute "edit " . s:selected_file
     call popup_clear()
 endfunction
-
-
 
 
 " SearchFilesFunc() {{{1
