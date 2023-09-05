@@ -18,7 +18,7 @@ function SearchFilesFunc()
     " Set up find command {{{2
     let exclude_paths = ["**/__pycache__/*", "./.git/*", "./.pytest_cache/*", "./*.egg-info/*",
                         \"./.obsidian/*", "./Productivity/*"]
-    let exclude_extensions = ["*.swp", "*.swo", "*.pdf", "*.png"]
+    let exclude_extensions = ["*.swp", "*.swo", "*.pdf", "*.png", ".search_strings"]
 
     let find_command = "find . -type f"
     for path in exclude_paths
