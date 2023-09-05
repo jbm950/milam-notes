@@ -4,10 +4,10 @@
 " the window that the cursor was in before the popup terminal was launched.
 function OpenFile(...)
     let s:selected_file = getbufline(g:buf, "$")[0]
+    call popup_close(s:winid)
     call win_gotoid(s:current_win)
     call delete('.search_strings')
     execute "edit " . s:selected_file
-    call popup_clear()
 endfunction
 
 
@@ -41,8 +41,8 @@ function SearchFilesFunc()
     let window_first_col = win_screenpos(0)[1]
     let popup_first_col = window_first_col + winwidth(0)/2 - 45
 
-    let winid = popup_create(g:buf, #{line: popup_first_line, col: popup_first_col, border: [],
-                             \ borderhighlight: ["Normal"], minwidth: 90, minheight: 50})
+    let s:winid = popup_create(g:buf, #{line: popup_first_line, col: popup_first_col, border: [],
+                               \ borderhighlight: ["Normal"], minwidth: 90, minheight: 50})
 endfunction
 
 
