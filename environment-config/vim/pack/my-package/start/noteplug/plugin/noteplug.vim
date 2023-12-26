@@ -17,13 +17,13 @@ nnoremap <leader>nnpp :NewProgrammingProjectNote<CR>|  " Note New Project Progra
 nnoremap <leader>nnsb :NewSourceBookNote<CR>|  " Note New Source Book
 
 " Commands {{{1
-command NewDailyNote silent !python "$MILAM_NOTES_REPO_DIR/new_daily_note.py" "$NOTES_DIR/Journal/Daily"
+command NewDailyNote silent !python "$MILAM_NOTES_REPO_DIR/journal_notes/new_daily_note.py" "$NOTES_DIR/Journal/Daily"
 command OpenDailyNote call noteplug#OpenDailyNoteFunc()
 
-command NewWeeklyNote silent !python "$MILAM_NOTES_REPO_DIR/new_weekly_note.py" "$NOTES_DIR/Journal/Weekly"
+command NewWeeklyNote silent !python "$MILAM_NOTES_REPO_DIR/journal_notes/new_weekly_note.py" "$NOTES_DIR/Journal/Weekly"
 command OpenWeeklyNote call noteplug#OpenWeeklyNoteFunc()
 
-command NewMonthlyNote silent !python "$MILAM_NOTES_REPO_DIR/new_monthly_note.py" "$NOTES_DIR/Journal/Monthly"
+command NewMonthlyNote silent !python "$MILAM_NOTES_REPO_DIR/journal_notes/new_monthly_note.py" "$NOTES_DIR/Journal/Monthly"
 command OpenMonthlyNote call noteplug#OpenMonthlyNoteFunc()
 
 command OpenProjectMainNote call noteplug#OpenProjectMainFunc()
