@@ -46,9 +46,6 @@ nnoremap <expr> [w empty(filter(getwininfo(), 'v:val.loclist')) ? ':lopen<CR>' :
 " Exit insert mode more easily
 inoremap jk <esc>
 
-" Change word delete in insert mode
-inoremap <C-I> <C-W>
-
 " Exit the terminal window more easily
 tnoremap <C-F> <C-W>N
 tnoremap <C-G> <C-W>Ngt
