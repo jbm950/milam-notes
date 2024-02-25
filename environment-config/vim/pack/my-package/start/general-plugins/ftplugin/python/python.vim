@@ -16,7 +16,7 @@ augroup END
 
 " Commands {{{1
 command PyToggleComment call toggle_comment#ToggleCommentFunc("#")
-command PylintLopen lex system('pylint "'..expand('%:p')..'" | tail -n +2 | head -n -4') | lopen
+command PylintLopen call PythonLint(expand('%:p'))
 command DocstringParameters call InsertDocstringHeader("Parameters")
 command DocstringReturns call InsertDocstringHeader("Returns")
 command DocstringYields call InsertDocstringHeader("Yields")
@@ -27,4 +27,10 @@ function! InsertDocstringHeader(header)
     let dashes = repeat("-", strlen(a:header))
     execute "normal! a" . a:header .  "\n" . dashes . "\n \<esc>"
     startinsert
+endfunction
+
+function! PythonLint(path)
+    let pylint_string = 'pylint "'..a:path..'" | tail -n +2 | head -n -4'
+    let pycodestyle_string = 'pycodestyle "'..a:path..'" --ignore=E501,E123'
+    lex system('{ { '..pylint_string..'; } && '..pycodestyle_string..'; }') | lopen
 endfunction
