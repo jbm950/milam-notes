@@ -2,6 +2,8 @@ import datetime
 import pathlib
 import sys
 
+import note_util
+
 
 def new_weekly_note(arg_notes_dir):
     today = datetime.date.today()
@@ -25,20 +27,12 @@ def new_weekly_note(arg_notes_dir):
         previous_weekly_note_path = None
 
     if previous_weekly_note_path is not None:
-        goals_section_found = False
-        goals_lines = ['# Goals this Week\n']
         with open(previous_weekly_note_path, "r") as prev_weekly_note:
-            for line in prev_weekly_note:
-                if line == "# Goals this Week\n":
-                    goals_section_found = True
-                elif line.startswith("# ") and goals_section_found == True:
-                    break
-                elif goals_section_found:
-                    goals_lines.append(line)
+            prev_weekly_note_lines = list(prev_weekly_note.readlines())
 
-        prev_goals_text = "".join(goals_lines)
-    else:
-        prev_goals_text = "# Goals this Week\n\n\n"
+        prev_goals_text = note_util.find_section_in_file(file_lines=prev_weekly_note_lines,
+                                                         header_level=1,
+                                                         section_title="Goals this Week")
 
     current_week_monday = today - datetime.timedelta(days=today.weekday())
     current_week_sunday = current_week_monday + datetime.timedelta(days=6)
@@ -60,7 +54,7 @@ def new_weekly_note(arg_notes_dir):
                 "# End of Week Reflection\n"
                 "## Top 3 Accomplishments\n- \n- \n- \n\n"
                 "## What Went Well\n\n"
-                "## What could have been better\Lessons Learned\n\n")
+                "## What could have been better\\Lessons Learned\n\n")
 
     with open(new_weekly_note_path, "w") as new_weekly_note:
         new_weekly_note.write(template)

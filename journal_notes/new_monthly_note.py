@@ -3,6 +3,8 @@ from dateutil.relativedelta import relativedelta
 import pathlib
 import sys
 
+import note_util
+
 
 def new_monthly_note(arg_notes_dir):
     today = datetime.date.today()
@@ -26,20 +28,12 @@ def new_monthly_note(arg_notes_dir):
         previous_monthly_note_path = None
 
     if previous_monthly_note_path is not None:
-        goals_section_found = False
-        goals_lines = ['# Goals this Month\n']
         with open(previous_monthly_note_path, "r") as prev_monthly_note:
-            for line in prev_monthly_note:
-                if line == "# Goals this Month\n":
-                    goals_section_found = True
-                elif line.startswith("# ") and goals_section_found == True:
-                    break
-                elif goals_section_found:
-                    goals_lines.append(line)
+            prev_monthly_note_lines = list(prev_monthly_note.readlines())
 
-        prev_goals_text = "".join(goals_lines)
-    else:
-        prev_goals_text = "# Goals this Month\n\n\n"
+        prev_goals_text = note_util.find_section_in_file(file_lines=prev_monthly_note_lines,
+                                                         header_level=1,
+                                                         section_title="Goals this Month")
 
     new_monthly_note_path = arg_notes_dir.joinpath(today.strftime("%Y-%m.md"))
     template = (f"# {today.strftime('%Y-%m %B')}\n"
@@ -51,7 +45,7 @@ def new_monthly_note(arg_notes_dir):
                 "# End of Month Reflection\n"
                 "## Top 3 Accomplishments\n- \n- \n- \n\n"
                 "## What Went Well\n\n"
-                "## What could have been better\Lessons Learned\n\n")
+                "## What could have been better\\Lessons Learned\n\n")
 
     with open(new_monthly_note_path, "w") as new_monthly_note:
         new_monthly_note.write(template)

@@ -2,6 +2,7 @@ import datetime
 import pathlib
 import sys
 
+import note_util
 
 
 def new_daily_note(notes_dir):
@@ -15,22 +16,14 @@ def new_daily_note(notes_dir):
     previous_daily_note_path = find_prev_daily_note(day_range=50, notes_dir=notes_dir)
 
     if previous_daily_note_path is not None:
-        projects_section_found = False
-        projects_lines = ['# Projects\n']
         with open(previous_daily_note_path, "r") as prev_daily_note:
-            for line in prev_daily_note:
-                if line == "# Projects\n":
-                    projects_section_found = True
-                elif line.startswith("# ") and projects_section_found == True:
-                    break
-                elif projects_section_found:
-                    projects_lines.append(line)
+            prev_daily_note_lines = list(prev_daily_note.readlines())
 
-        prev_projects_text = "".join(projects_lines)
-    else:
-        prev_projects_text = "# Projects\n\n\n"
+        prev_projects_text = note_util.find_section_in_file(file_lines=prev_daily_note_lines,
+                                                            header_level=1,
+                                                            section_title="Projects")
 
-    new_daily_note_path = arg_notes_dir.joinpath(today.isoformat() + ".md")
+    new_daily_note_path = notes_dir.joinpath(today.isoformat() + ".md")
     template = (f"# {today.isoformat()}\n\n"
                 "# Day Planning\n"
                 "## What would I like to accomplish today?\n\n"
@@ -40,7 +33,7 @@ def new_daily_note(notes_dir):
                 "# End of Day Reflection\n"
                 "## Top 3 Accomplishments\n- \n- \n- \n\n"
                 "## What Went Well\n\n"
-                "## What could have been better\Lessons Learned\n\n")
+                "## What could have been better\\Lessons Learned\n\n")
 
     with open(new_daily_note_path, "w") as new_daily_note:
         new_daily_note.write(template)
