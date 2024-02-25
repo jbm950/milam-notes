@@ -1,5 +1,5 @@
 " Mappings {{{1
-nnoremap <buffer> <leader>pl :PylintLopen<CR>
+nnoremap <buffer> <space>l :PylintLopen<CR>
 vnoremap <buffer> <space>c :<c-u>PyToggleComment<CR>
 inoremap <buffer> Para a<esc>x:DocstringParameters<CR>
 inoremap <buffer> Ret a<esc>x:DocstringReturns<CR>
