@@ -22,10 +22,15 @@ def new_daily_note(notes_dir):
         prev_projects_text = note_util.find_section_in_file(file_lines=prev_daily_note_lines,
                                                             header_level=1,
                                                             section_title="Projects")
+        prev_game_plan = note_util.find_section_in_file(file_lines=prev_daily_note_lines,
+                                                        header_level=2,
+                                                        section_title="Game Plan for Next Time")
+        next_time_game_plan = prev_game_plan.replace("for Next Time", "from Last Time").strip()
 
     new_daily_note_path = notes_dir.joinpath(today.isoformat() + ".md")
     template = (f"# {today.isoformat()}\n\n"
                 "# Day Planning\n"
+                f"{next_time_game_plan}\n\n"
                 "## What would I like to accomplish today?\n\n"
                 "## What could I do just a little better today?\n\n\n"
                 f"{prev_projects_text}"
@@ -33,7 +38,8 @@ def new_daily_note(notes_dir):
                 "# End of Day Reflection\n"
                 "## Top 3 Accomplishments\n- \n- \n- \n\n"
                 "## What Went Well\n\n"
-                "## What could have been better\\Lessons Learned\n\n")
+                "## What could have been better\\Lessons Learned\n\n"
+                "## Game Plan for Next Time\n\n")
 
     with open(new_daily_note_path, "w") as new_daily_note:
         new_daily_note.write(template)
