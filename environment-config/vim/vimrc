@@ -97,6 +97,7 @@ set wildmenu
 """""" Custom Commands ---------------------- {{{1
 command FourWinTwoTerm call FourWinTwoTermFunc()
 command TwoWinOneTerm call TwoWinOneTermFunc()
+command TagGenerate call TagGenerateFunc()
 
 
 """""" Custom Functions ---------------------- {{{1
@@ -134,6 +135,12 @@ function! ToggleVirtualEdit()
         set virtualedit=all
         echo "virtualedit=all"
     endif
+endfunction
+
+""" TagGenerateFunc() {{{2
+function! TagGenerateFunc()
+    silent !python "$MILAM_NOTES_REPO_DIR/pytags.py" "."
+    redraw!
 endfunction
 
 
