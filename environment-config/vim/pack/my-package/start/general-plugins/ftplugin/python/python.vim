@@ -30,7 +30,21 @@ function! InsertDocstringHeader(header)
 endfunction
 
 function! PythonLint(path)
-    let pylint_string = 'pylint "'..a:path..'" | tail -n +2 | head -n -4'
-    let pycodestyle_string = 'pycodestyle "'..a:path..'" --ignore=E501,E123'
+    " Pylint options disabled
+    " R0902 - Too many instance attributes
+    " R0903 - Too few public methods
+    " C0114 - Missing module docstring
+    " C0115 - Missing class docstring
+    " C0302 - Too many lines in module
+    " Test file specific disables
+    " W0201 - Attribute defined outside init
+    " C0116 - Missing function/method docstring
+    let pylint_disable = "R0902,R0903,C0114,C0115,C0302"
+    if fnamemodify(a:path, ":t") =~# "\^test"  " disable more options for test files
+        let pylint_disable = pylint_disable . ",W0201,C0116"
+    endif
+
+    let pylint_string = 'pylint "'..a:path..'" --disable='..pylint_disable..' | tail -n +2 | head -n -4'
+    let pycodestyle_string = 'pycodestyle "'..a:path..'" --ignore=E501,E123,W503'
     lex system('{ { '..pylint_string..'; } && '..pycodestyle_string..'; }') | lopen
 endfunction
