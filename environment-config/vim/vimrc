@@ -90,6 +90,9 @@ set textwidth=0
 " Show the line numbers in each window
 set number
 
+" Show the distance of each line from the line with the cursor
+set relativenumber
+
 " Allow recursive file searching
 set path+=**
 
