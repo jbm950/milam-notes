@@ -53,6 +53,9 @@ inoremap jk <esc>
 " Change word delete in insert mode
 inoremap <C-I> <C-W>
 
+" Easy terminal open
+nnoremap <C-`> :bel term<CR>
+
 " Exit the terminal window more easily
 tnoremap <C-F> <C-W>N
 tnoremap <C-G> <C-W>Ngt
