@@ -31,6 +31,10 @@ vnoremap <space>w{ <esc>`<i{<esc>`>la}<esc>
 vnoremap <space>w[ <esc>`<i[<esc>`>la]<esc>
 vnoremap <space>w( <esc>`<i(<esc>`>la)<esc>
 
+" Maintain register paste
+nnoremap <space>p pgvy
+vnoremap <space>p pgvy
+
 " Easy window switching
 nnoremap <C-h> <C-w>h
 let g:C_Ctrl_j = 'off'
