@@ -1,0 +1,81 @@
+*my-keybinds.txt* listing of the custom keybinds I've made
+
+====================================================================
+CONTENTS                                        *MyKeybindsContents*
+
+    1. General ................... |GeneralKeybinds|
+    2. Leader Keybinds ........... |LeaderKeybinds|
+    3. Space Keybinds ............ |SpaceKeybinds|
+
+====================================================================
+1. General
+    CTRL-` = Open new terminal below current window
+
+--------------------------------------------------------------------
+1.1 Change Options
+    coh = Toggle highlighting
+    cos = Toggle spell checker
+    cov = Toggle virtual edit
+
+====================================================================
+2. Leader Keybinds
+    <leader>-ev = Edit vimrc
+    <leader>-sv = Source vimrc
+
+--------------------------------------------------------------------
+2.1 NotePlug Keybinds
+
+Navigation
+    <leader>-nh = Open home
+    <leader>-nt = List tags
+    <leader>-na = Open activity planner
+
+Journal
+    <leader>-nd = Open daily
+    <leader>-nw = Open weekly
+    <leader>-nm = Open monthly
+
+Projects
+    <leader>-np = Open projects
+    <leader>-nb = Open backlog
+
+New file from template
+    <leader>-nnq = New question
+    <leader>-nnpg = New generic project
+    <leader>-nnpt = New trip project
+    <leader>-nnpp = New programming project
+    <leader>-nnsb = New book source
+
+--------------------------------------------------------------------
+2.2 Git Keybinds
+    <leader>-gll = Open git log for repository
+    <leader>-glb = Open git log for the file in the current buffer
+    <leader>-gls = Open git log for scope (user inputs scope)
+
+====================================================================
+3. Space Keybinds
+    <space>-c = Comment current selection
+    <space>-l = Lint current buffer
+    <space>-o = Open the "Search and Open File" popup
+    <space>-p = Paste while maintaining register
+    <space>-s = Grep search
+        In normal mode, this will be followed by a movement operator
+        In visual mode, this will search the selection
+
+--------------------------------------------------------------------
+3.1 Testing Keybinds
+    <space>-tf = Test function containing cursor
+    <space>-tc = Test class containing cursor
+    <space>-tF = Test file containing cursor
+    <space>-ts = Test subfolder containing cursor
+    <space>-tp = Test current directory
+
+--------------------------------------------------------------------
+3.2 Wrapping Keybinds
+    <space>-w' = wrap with apostrophes ''
+    <space>-w" = wrap with quotes ""
+    <space>-w` = wrap with backticks ``
+    <space>-w{ = wrap with curly braces {}
+    <space>-w[ = wrap with square braces []
+    <space>-w( = wrap with parenthese ()
+
