@@ -29,6 +29,7 @@ Navigation
     <leader>-nh = Open home
     <leader>-nt = List tags
     <leader>-na = Open activity planner
+    <leader>-no = Open the "Search and Open File" popup
 
 Journal
     <leader>-nd = Open daily

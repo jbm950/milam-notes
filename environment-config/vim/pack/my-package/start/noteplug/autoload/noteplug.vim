@@ -67,3 +67,10 @@ function! noteplug#NoteNew(root, template)
     execute "read " . a:template
     normal ggdd
 endfunction
+
+""" SearchNotesFunc() {{{2
+function! noteplug#SearchNotesFunc()
+    let original_cwd = getcwd()
+    let notes_dir = system('cygpath -u $NOTES_DIR')[:-2]  " Strip NULL character off end
+    call SearchFilesFunc(notes_dir)
+endfunction

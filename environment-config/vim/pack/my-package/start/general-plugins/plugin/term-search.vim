@@ -7,20 +7,22 @@ function OpenFile(...)
     call popup_close(s:winid)
     call win_gotoid(s:current_win)
     call delete('.search_strings')
-    execute "edit " . s:selected_file
+    execute "edit " . s:path . s:selected_file[1:]
 endfunction
 
 
 " SearchFilesFunc() {{{1
 " This function sets up the bash command and launches the popup terminal for
 " user interaction to select a file to open.
-function SearchFilesFunc()
+function SearchFilesFunc(path)
+    let s:path = a:path
+
     " Set up find command {{{2
     let exclude_paths = ["**/__pycache__/*", "./.git/*", "./.pytest_cache/*", "./*.egg-info/*",
                         \"./.obsidian/*", "./Productivity/*"]
     let exclude_extensions = ["*.swp", "*.swo", "*.pdf", "*.png", ".search_strings"]
 
-    let find_command = "find . -type f"
+    let find_command = "cd " . s:path . " && find . -type f"
     for path in exclude_paths
         let find_command .= ' -not -path "' . path . '"'
     endfor
@@ -47,5 +49,5 @@ endfunction
 
 
 " Commands and mappings {{{1
-command SearchFiles call SearchFilesFunc()
+command SearchFiles call SearchFilesFunc(getcwd())
 nnoremap <space>o :SearchFiles<CR>

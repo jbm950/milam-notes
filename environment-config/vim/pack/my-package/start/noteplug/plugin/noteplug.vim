@@ -15,6 +15,7 @@ nnoremap <leader>nnpg :NewGenericProjectNote<CR>|  " Note New Project Generic
 nnoremap <leader>nnpt :NewTripProjectNote<CR>|  " Note New Project Trip
 nnoremap <leader>nnpp :NewProgrammingProjectNote<CR>|  " Note New Project Programming
 nnoremap <leader>nnsb :NewSourceBookNote<CR>|  " Note New Source Book
+nnoremap <leader>no :SearchNotes<CR>|  " Note open
 
 " Commands {{{1
 command NewDailyNote silent !python "$MILAM_NOTES_REPO_DIR/journal_notes/new_daily_note.py" "$NOTES_DIR/Journal/Daily"
@@ -35,3 +36,4 @@ command NewGenericProjectNote call noteplug#NoteNew("$NOTES_DIR/Productivity/Pro
 command NewTripProjectNote call noteplug#NoteNew("$NOTES_DIR/Productivity/Projects/", "$NOTES_DIR/Templates/project-plan-trip.md")
 command NewProgrammingProjectNote call noteplug#NoteNew("$NOTES_DIR/Productivity/Projects/", "$NOTES_DIR/Templates/project-programming.md")
 command NewSourceBookNote call noteplug#NoteNew("$NOTES_DIR/Sources/", "$NOTES_DIR/Templates/source-book.md")
+command SearchNotes call noteplug#SearchNotesFunc()
