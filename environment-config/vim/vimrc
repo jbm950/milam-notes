@@ -51,7 +51,7 @@ nnoremap <expr> [w empty(filter(getwininfo(), 'v:val.loclist')) ? ':lopen<CR>' :
 inoremap jk <esc>
 
 " Change word delete in insert mode
-inoremap <C-I> <C-W>
+inoremap <C-L> <C-W>
 
 " Easy terminal open
 nnoremap <C-`> :bel term<CR>
