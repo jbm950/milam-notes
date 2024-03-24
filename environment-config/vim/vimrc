@@ -9,7 +9,7 @@ set showmode " always show what mode we're currently editing in
 syntax enable
 highlight Normal ctermfg=grey ctermbg=black
 let python_highlight_all=1
-colorscheme wombat256
+colorscheme mywombat256
 
 " Set vertical lines at 80 and 100 characters
 set colorcolumn=80,100
