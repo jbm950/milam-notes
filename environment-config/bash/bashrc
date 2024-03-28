@@ -18,3 +18,5 @@ vimsandbox() {
     cd ~/.vim/pack/sandbox/start/sandbox/plugin
     vim sandbox.vim
 }
+
+for f in $MILAM_NOTES_REPO_DIR/environment-config/bash/bash-procedures/*; do source $f; done
