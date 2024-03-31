@@ -54,7 +54,7 @@ inoremap jk <esc>
 inoremap <C-L> <C-W>
 
 " Easy terminal open
-nnoremap <C-`> :bel term<CR>
+nnoremap <space>b :bel term<CR>
 
 " Exit the terminal window more easily
 tnoremap <C-F> <C-W>N

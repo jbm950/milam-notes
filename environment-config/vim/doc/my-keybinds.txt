@@ -9,7 +9,6 @@ CONTENTS                                        *MyKeybindsContents*
 
 ====================================================================
 1. General
-    CTRL-` = Open new terminal below current window
 
 --------------------------------------------------------------------
 1.1 Change Options
@@ -55,6 +54,7 @@ New file from template
 
 ====================================================================
 3. Space Keybinds
+    <space>-b = Open a terminal buffer below current window
     <space>-c = Comment current selection
     <space>-l = Lint current buffer
     <space>-o = Open the "Search and Open File" popup
