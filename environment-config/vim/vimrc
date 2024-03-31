@@ -106,7 +106,13 @@ set path+=**
 " Display all matching files when we tab complete
 set wildmenu
 
+" Add my custom help documents to the vim help system
 helptags ~/.vim/doc
+
+" Incorporate ripgrep for searching when present
+if executable('rg')
+    set grepprg=rg\ --vimgrep\ --smart-case
+endif
  
 """""" Custom Commands ---------------------- {{{1
 command FourWinTwoTerm call FourWinTwoTermFunc()

@@ -13,8 +13,13 @@ function! s:GrepOperator(type)
         return
     endif
 
-    let exclude_str = "--exclude=\*.pyc --exclude=\*.swp --exclude=tags"
-    silent execute "lgrep! -R " . shellescape(@@) . " . --exclude-dir=.git " . exclude_str
+    if executable('rg')
+        let exclude_str = "-g !\*.pyc -g !\*.swp -g !tags"
+        silent execute "lgrep! " . shellescape(@@) . " . -g !.git " . exclude_str
+    else
+        let exclude_str = "--exclude=\*.pyc --exclude=\*.swp --exclude=tags"
+        silent execute "lgrep! -R " . shellescape(@@) . " . --exclude-dir=.git " . exclude_str
+    endif
     lopen
     execute "redraw!"
 
