@@ -6,6 +6,7 @@ nnoremap <space>tc :PytestClass<CR>
 nnoremap <space>tF :PytestFile<CR>
 nnoremap <space>ts :PytestSubfolder<CR>
 nnoremap <space>tp :PytestProject<CR>
+nnoremap <space>td :DoctestFile<CR>
 inoremap <buffer> Para a<esc>x:DocstringParameters<CR>
 inoremap <buffer> Ret a<esc>x:DocstringReturns<CR>
 inoremap <buffer> Yie a<esc>x:DocstringYields<CR>
@@ -27,6 +28,7 @@ command PytestClass call PytestClassFunc()
 command PytestFile !pytest -v %
 command PytestSubfolder call PytestSubfolderFunc()
 command PytestProject !pytest -v .
+command DoctestFile !python -m doctest -v %
 command DocstringParameters call InsertDocstringHeader("Parameters")
 command DocstringReturns call InsertDocstringHeader("Returns")
 command DocstringYields call InsertDocstringHeader("Yields")

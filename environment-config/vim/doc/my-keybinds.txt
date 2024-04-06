@@ -70,6 +70,7 @@ New file from template
     <space>-tF = Test file containing cursor
     <space>-ts = Test subfolder containing cursor
     <space>-tp = Test current directory
+    <space>-td = Doctest current file
 
 --------------------------------------------------------------------
 3.2 Wrapping Keybinds
