@@ -17,6 +17,9 @@ set colorcolumn=80,100
 " No terminal bell (visual flash)
 set t_vb=
 
+" Disable auto-resizing on window closes
+set noequalalways
+
 
 """""" Keybind Changes ---------------------- {{{1
 " Easier to indent and unindent code blocks
