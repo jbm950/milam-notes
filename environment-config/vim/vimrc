@@ -60,6 +60,7 @@ inoremap <C-L> <C-W>
 nnoremap <space>b :bel term<CR>
 
 " Exit the terminal window more easily
+tnoremap jk <C-W>N
 tnoremap <C-F> <C-W>N
 tnoremap <C-G> <C-W>Ngt
 
