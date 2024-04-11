@@ -52,6 +52,8 @@ New file from template
     <leader>-glb = Open git log for the file in the current buffer
     <leader>-gls = Open git log for scope (user inputs scope)
 
+    <leader>-gd = Open git diff in new tab for current buffer
+
 ====================================================================
 3. Space Keybinds
     <space>-b = Open a terminal buffer below current window
