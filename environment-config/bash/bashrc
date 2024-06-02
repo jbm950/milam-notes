@@ -6,6 +6,9 @@ alias gr='cd $GIT_REPOS'
 # cmake using g++
 alias gcmake="cmake -S . -B build -G 'MinGW Makefiles'"
 
+# Prefer ls to show in a long list format
+alias ls="ls -1 --color=auto"
+
 # Custom Git Configs
 git config --global pretty.date-oneline 'format:%C(auto)%h | %as | %s'
 
