@@ -1,0 +1,77 @@
+#!/bin/sh
+
+PROJ_TYPE="$1"
+PROJ_NAME="$2"
+
+case "$PROJ_TYPE" in
+    cargo)
+        if ! command -v cargo &> /dev/null; then
+            echo "cargo not found. Make sure to install cargo first."
+            exit 1
+        fi
+
+        cargo new $PROJ_NAME
+        if [ ! -d "$PROJ_NAME" ]; then
+            echo "Error when running 'cargo new'"
+            exit 1
+        fi
+        cd $PROJ_NAME
+        ;;
+    py)
+        if command -v python3 &> /dev/null; then
+            PYTHON_CMD="python3"
+        elif command -v python &> /dev/null; then
+            PYTHON_CMD="python"
+        else
+            echo "Python not found. Please install Python."
+            exit 1
+        fi
+
+        mkdir $PROJ_NAME
+        if [ ! -d "$PROJ_NAME" ]; then
+            echo "Error when making new directory $PROJ_NAME"
+            exit 1
+        fi
+        cd $PROJ_NAME
+
+        $PYTHON_CMD -m venv .venv
+        if [ ! -d ".venv" ]; then
+            echo "Error when attempting to make a python virtual environment."
+        fi
+
+        git init
+        echo ".venv/*" > .gitignore
+        ;;
+    idf)
+        if ! command -v idf.py &> /dev/null; then
+            echo "idf.py not found. Make sure to export the scripts."
+            exit 1
+        fi
+
+        idf.py create-project $PROJ_NAME
+        if [ ! -d "$PROJ_NAME" ]; then
+            echo "Error when running 'idf.py create-project'"
+            exit 1
+        fi
+        cd $PROJ_NAME
+
+        git init
+        echo "build/*" > .gitignore
+        ;;
+    *)
+        echo "Invalid input."
+        exit 1
+        ;;
+esac
+
+git add .
+git commit -m "Initial commit"
+
+if [ -z "${GITLAB_URL+x}" ]; then
+    echo "The GITLAB_URL environment variable is not set. Not going to attempt to push repo."
+    exit 1
+fi
+
+git remote add origin ssh://git@$GITLAB_URL/sandbox/$PROJ_NAME.git
+git push --set-upstream origin master
+
