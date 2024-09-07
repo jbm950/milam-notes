@@ -112,6 +112,9 @@ set incsearch
 " Display all matching files when we tab complete
 set wildmenu
 
+" Force the status line to always be on
+set laststatus=2
+
 " Add my custom help documents to the vim help system
 helptags ~/.vim/doc
 
