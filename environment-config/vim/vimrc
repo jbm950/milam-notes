@@ -106,6 +106,9 @@ set relativenumber
 " Allow recursive file searching
 set path+=**
 
+" Show matches while typing out search pattern
+set incsearch
+
 " Display all matching files when we tab complete
 set wildmenu
 
