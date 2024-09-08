@@ -57,6 +57,7 @@ case "$PROJ_TYPE" in
 
         git init
         echo "build/*" > .gitignore
+        echo "*.swp" > .gitignore
         ;;
     *)
         echo "Invalid input."
