@@ -22,6 +22,12 @@ set noequalalways
 
 
 """""" Keybind Changes ---------------------- {{{1
+" Easier session management
+let g:session_dir = '~/vim-sessions'
+execute 'nnoremap <leader>ss :mksession! ' . g:session_dir . '/*.vim<C-D><BS><BS><BS><BS><BS>'
+execute 'nnoremap <leader>sr :source ' . g:session_dir . '/*.vim<C-D><BS><BS><BS><BS><BS>'
+execute 'nnoremap <leader>sd :!rm ' . g:session_dir . '/*.vim<C-D><BS><BS><BS><BS><BS>'
+
 " Easier to indent and unindent code blocks
 vnoremap < <gv
 vnoremap > >gv

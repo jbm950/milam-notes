@@ -54,6 +54,12 @@ New file from template
 
     <leader>-gd = Open git diff in new tab for current buffer
 
+--------------------------------------------------------------------
+2.3 Session Management Keybinds
+    <leader>-sd = Delete session
+    <leader>-ss = Save session
+    <leader>-sr = Restore session
+
 ====================================================================
 3. Space Keybinds
     <space>-b = Open a terminal buffer below current window
