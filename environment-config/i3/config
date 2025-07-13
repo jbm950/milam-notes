@@ -58,6 +58,9 @@ tiling_drag modifier titlebar
 # set the desktop wallpaper
 exec_always feh --bg-fill ~/Pictures/background1.jpg
 
+# start the compositor
+exec_always --no-startup-id picom --config ~/.config/picom/picom.conf -b
+
 # start a terminal
 bindsym $mod+Return exec kitty
 
