@@ -48,6 +48,9 @@ floating_modifier $mod
 # or left-clicking anywhere into the window while holding the floating modifier.
 tiling_drag modifier titlebar
 
+# set the desktop wallpaper
+exec_always feh --bg-fill ~/Pictures/background1.jpg
+
 # start a terminal
 bindsym $mod+Return exec kitty
 
