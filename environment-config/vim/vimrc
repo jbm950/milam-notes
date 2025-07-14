@@ -121,6 +121,9 @@ set wildmenu
 " Force the status line to always be on
 set laststatus=2
 
+" Allow use of clipboard on Linux
+set clipboard^=unnamed,unnamedplus
+
 " Add my custom help documents to the vim help system
 helptags ~/.vim/doc
 
