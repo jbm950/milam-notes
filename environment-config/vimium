@@ -1,0 +1,7 @@
+# Custom Key Maps
+map H previousTab
+map J goBack
+map K goForward
+map L nextTab
+map <c-d> scrollPageDown
+map <c-u> scrollPageUp
