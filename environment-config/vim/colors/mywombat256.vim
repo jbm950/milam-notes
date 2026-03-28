@@ -40,9 +40,8 @@ hi ColorColumn                      ctermbg=235                                 
 if version >= 700
 hi CursorLine                       ctermbg=236        cterm=none                         guibg=#32322f
 hi MatchParen    ctermfg=228        ctermbg=101        cterm=bold        guifg=#eae788    guibg=#857b6f    gui=bold
-highlight Pmenu NONE
-highlight link Pmenu Normal
-highlight PmenuSel ctermfg=black ctermbg=39
+hi Pmenu ctermfg=230 ctermbg=238 guifg=#ffffd7 guibg=#444444
+hi PmenuSel ctermfg=230 ctermbg=62 guifg=#080808 guibg=#cae982
 endif
 
 " Diff highlighting
