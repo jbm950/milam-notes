@@ -230,3 +230,12 @@ function! ToggleNetrw()
         execute "buffer" g:PrevBuffer
     endif
 endfunction
+
+""" fzf ------------------------ {{{2
+packadd fzf
+packadd fzf.vim
+
+nnoremap <space>ff :Files<CR>
+nnoremap <space>fo :History<CR>
+nnoremap <space>fb :Buffers<CR>
+nnoremap <space>fg :Rg<space>

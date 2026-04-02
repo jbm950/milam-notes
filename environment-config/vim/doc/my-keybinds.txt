@@ -89,3 +89,9 @@ New file from template
     <space>-w[ = wrap with square braces []
     <space>-w( = wrap with parenthese ()
 
+--------------------------------------------------------------------
+3.2 Fzf Keybinds
+    <space>-ff = Open file finder
+    <space>-fo = Open file history
+    <space>-fb = Open buffer list
+    <space>-fg = Open ripgrep prompt
