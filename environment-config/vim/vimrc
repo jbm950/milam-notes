@@ -239,3 +239,6 @@ nnoremap <space>ff :Files<CR>
 nnoremap <space>fo :History<CR>
 nnoremap <space>fb :Buffers<CR>
 nnoremap <space>fg :Rg<space>
+
+""" lsp ------------------------ {{{2
+source ~/.vim/lsp.vim
