@@ -1,3 +1,9 @@
 [submodule "environment-config/vim/pack/downloads/opt/lsp"]
 	path = environment-config/vim/pack/downloads/opt/lsp
 	url = git@github.com:yegappan/lsp.git
+[submodule "environment-config/vim/pack/downloads/opt/fzf"]
+	path = environment-config/vim/pack/downloads/opt/fzf
+	url = git@github.com:junegunn/fzf.git
+[submodule "environment-config/vim/pack/downloads/opt/fzf.vim"]
+	path = environment-config/vim/pack/downloads/opt/fzf.vim
+	url = git@github.com:junegunn/fzf.vim.git
