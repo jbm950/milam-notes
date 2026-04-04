@@ -1,0 +1,3 @@
+[submodule "environment-config/vim/pack/downloads/opt/lsp"]
+	path = environment-config/vim/pack/downloads/opt/lsp
+	url = git@github.com:yegappan/lsp.git
