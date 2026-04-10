@@ -7,17 +7,21 @@ call LspAddServer([{
     filetype: ['rust'],
     path: 'rust-analyzer',
     args: [],
-}, {
-    name: 'pyright',
-    filetype: ['python'],
-    path: getcwd() .. '/.venv/bin/pyright-langserver',
-    args: ['--stdio'],
-    workspaceConfig: {
-        python: {
-            pythonPath: getcwd() .. '/.venv/bin/python'
-        }
-    }
 }])
+
+if filereadable(getcwd() .. '/.venv/bin/pyright-langserver')
+    call LspAddServer([{
+        name: 'pyright',
+        filetype: ['python'],
+        path: getcwd() .. '/.venv/bin/pyright-langserver',
+        args: ['--stdio'],
+        workspaceConfig: {
+            python: {
+                pythonPath: getcwd() .. '/.venv/bin/python'
+            }
+        }
+    }])
+endif
 
 call LspOptionsSet({autoHighlightDiags: v:true})
 
