@@ -63,7 +63,7 @@ hi DiffChange                       ctermbg=22                                  
 "hi SignColumn
 "hi SpellBad
 "hi SpellCap
-"hi SpellLocal
+hi SpellLocal term=reverse ctermfg=0 ctermbg=121
 "hi SpellRare
 "hi TabLine
 "hi TabLineFill
