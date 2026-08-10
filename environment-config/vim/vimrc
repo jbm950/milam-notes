@@ -242,3 +242,4 @@ nnoremap <space>fg :Rg<space>
 
 """ lsp ------------------------ {{{2
 source ~/.vim/lsp.vim
+augroup LspSignatureHelp  " Fixes errors, not sure why
