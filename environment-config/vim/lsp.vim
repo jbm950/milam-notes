@@ -23,6 +23,15 @@ if filereadable(getcwd() .. '/.venv/bin/pyright-langserver')
     }])
 endif
 
+if filereadable('/usr/bin/clangd')
+    call LspAddServer([{
+        name: 'clangd',
+        filetype: ['c', 'cpp'],
+        path: '/usr/bin/clangd',
+        args: ['--background-index'],
+    }])
+endif
+
 call LspOptionsSet({autoHighlightDiags: v:true})
 
 # Key mappings
